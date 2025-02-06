@@ -239,7 +239,7 @@ const EnquiryDashboard = () => {
           Add Enquiry
         </Button>
       </div>
-      {/* Table Container with Scrollbar */}
+  
       <Box
         sx={{
           flexGrow: 1,
@@ -250,7 +250,7 @@ const EnquiryDashboard = () => {
           boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
         }}
       >
-        {/* Enquiry Table */}
+        
         <Table>
           <TableHead
             sx={{

@@ -9,7 +9,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({});
-  // console.log("user:", user);
+ 
   const handleInput = (e) => {
     console.log(e);
     let { name, value } = e.target;
@@ -19,12 +19,6 @@ const Register = () => {
       [name]: value,
     });
   };
-
-  // useEffect(() => {
-  //   if (Object.keys(formErrors).length === 0) {
-  //     console.log(user);
-  //   }
-  // }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
@@ -61,8 +55,7 @@ const Register = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    // setFormErrors(validate(user));
-    // setIsSubmit(true);
+ 
     const validationErrors = validate(user);
     setFormErrors(validationErrors);
 
@@ -196,56 +189,6 @@ const Register = () => {
                       <p className="text-danger">{formErrors.cpassword}</p>
                     </div>
 
-                    {/* <div className="col-12">
-                      <label for="userType" className="form-label">
-                        User Type
-                      </label>
-                      <div className="row">
-                        <div class="form-check col-lg-6">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="usertype"
-                            id="user"
-                            value="user"
-                            onChange={handleInput}
-                          />
-                          <label class="form-check-label" for="userType">
-                            User
-                          </label>
-                        </div>
-                        <div class="form-check col-lg-6">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="usertype"
-                            id="admin"
-                            value="admin"
-                            onChange={handleInput}
-                          />
-                          <label class="form-check-label" for="userType">
-                            Admin
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  
-                    {user.usertype === "admin" ? (
-                      <div className="col-6">
-                        <label for="yourSecretKey" className="form-label">
-                          Secret Key
-                        </label>
-                        <input
-                          type="text"
-                          name="secretKey"
-                          className="form-control"
-                          id="yourSecretKey"
-                          required
-                          value={user.secretKey}
-                          onChange={handleInput}
-                        />
-                      </div>
-                    ) : null} */}
 
                     <div className="col-12">
                       <button

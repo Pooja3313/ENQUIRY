@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Enquiry Schema
 const EnquirySchema = new mongoose.Schema({
     customerName: {
        type: String,
@@ -13,9 +12,11 @@ const EnquirySchema = new mongoose.Schema({
     email: {
        type: String,
         required: true },
+
     interestedProducts: {
        type: [String], 
-       required: true }, // Multiple select
+       required: true }, 
+
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Users",

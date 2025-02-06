@@ -19,7 +19,6 @@ const Navbar = () => {
             to="index.html"
             className="logo d-flex align-items-center me-auto"
           >
-            {/* <!-- Uncomment the line below if you also wish to use an image logo --> */}
 
             <h1 className="sitename">Product</h1>
           </NavLink>

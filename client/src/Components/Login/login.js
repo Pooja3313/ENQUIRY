@@ -1,24 +1,21 @@
 import React, { useState, useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../Store/authh";
 
 const Login = () => {
-
   const [formErrors, setFormErrors] = useState({});
 
   const navigate = useNavigate();
 
   const { storeTokenInLS, storeUserIDInLS } = useAuth();
 
-  const [user, setUser] = useState({ });
-  // console.log("user login", user);
+  const [user, setUser] = useState({});
 
   const handleInput = (e) => {
     console.log(e);
-    let {name, value} = e.target;
-    
+    let { name, value } = e.target;
 
     setUser({
       ...user,
@@ -26,17 +23,16 @@ const Login = () => {
     });
   };
 
-
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
-   
+
     if (!values.email) {
       errors.email = "Email is required!";
     } else if (!regex.test(values.email)) {
       errors.email = "This is not a valid email format!";
     }
-    
+
     if (!values.password) {
       errors.password = "Password is required";
     } else if (values.password.length < 4) {
@@ -50,49 +46,44 @@ const Login = () => {
 
   const loginUser = async (e) => {
     e.preventDefault();
-    
+
     const validationErrors = validate(user);
     setFormErrors(validationErrors);
-    
+
     if (Object.keys(validationErrors).length === 0) {
-        try {
-            const response = await fetch("/api/authh/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(user),
-            });
+      try {
+        const response = await fetch("/api/authh/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
 
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log("after login: ", responseData);
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log("after login: ", responseData);
 
-                toast.success("Login Successful");
+          toast.success("Login Successful");
 
-                // Clear user input fields after successful login
-                setUser({
-                    email: "",
-                    password: "",
-                });
+          setUser({
+            email: "",
+            password: "",
+          });
 
-                // Store token & user ID in local storage
-                storeTokenInLS(responseData.token);
-                storeUserIDInLS(responseData.userId);
+          storeTokenInLS(responseData.token);
+          storeUserIDInLS(responseData.userId);
 
-                // Navigate after login
-                navigate("/EnquiryDashboard"); 
-
-            } else {
-                toast.error("Login failed");
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("An error occurred. Please try again.");
+          navigate("/EnquiryDashboard");
+        } else {
+          toast.error("Login failed");
         }
+      } catch (error) {
+        console.log(error);
+        toast.error("An error occurred. Please try again.");
+      }
     }
-};
-
+  };
 
   return (
     <>
@@ -125,7 +116,7 @@ const Login = () => {
                         value={user.email}
                         onChange={handleInput}
                       />
-                       <p className="text-danger">{formErrors.email}</p>
+                      <p className="text-danger">{formErrors.email}</p>
                     </div>
 
                     <div className="col-12">
@@ -141,7 +132,7 @@ const Login = () => {
                         value={user.password}
                         onChange={handleInput}
                       />
-                       <p className="text-danger">{formErrors.password}</p>
+                      <p className="text-danger">{formErrors.password}</p>
                     </div>
 
                     <div className="col-12">

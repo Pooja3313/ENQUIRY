@@ -22,7 +22,7 @@ function App() {
 
         
       </Routes>
-      <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} /> {/* Add ToastContainer */}
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} /> 
     </>
   );
 }
