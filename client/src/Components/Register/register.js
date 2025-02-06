@@ -76,9 +76,8 @@ const Register = () => {
             email: "",
             phone: "",
             password: "",
-            cpassword: "",
-            usertype:"",
-            secretKey:"",
+            cpassword: ""
+          
           });
 
           navigate("/login");
